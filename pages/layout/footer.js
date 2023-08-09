@@ -1,7 +1,7 @@
 export default function Footer(){
     return(
         <>
-       <h6>This is footer</h6>
+       <h6>Site Copyright reserved @Tri_Gerdening</h6>
         </>
     )
 }
