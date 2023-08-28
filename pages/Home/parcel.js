@@ -3,20 +3,24 @@ import Image from 'next/image';
 import Layout from '../layout/layout';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../Uits/authContext';
 
 
 export default function Parcel() {
   const [orders, setOrders] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const searchArea = 'prosit.kdd@gmail.com';
+  const { user, logout, checkUser } = useAuth();
+  var storedUser;
+  //const searchArea = 'prosit.kdd@gmail.com';
 
   useEffect(() => {
+    storedUser = JSON.parse(localStorage.getItem('user'));
     ForView();
   }, []);
 
   async function ForView() {
     try {
+      const searchArea = storedUser.email;
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_DELIVERY}myorders/${searchArea}`
       );
@@ -67,34 +71,41 @@ export default function Parcel() {
   return (
     <Layout page="parcel">
   <div>
-    <h2>Order List</h2>
-    <h1>{errorMessage}</h1>
-    {orders.length === 0 ? (
-      <p>You have no orders.</p>
-    ) : (
-      orders.map(order => (
-        <div key={order.id} className="order-card">
-          <h3>Order ID: {order.id}</h3>
-          <p>Seller: {order.Seller}</p>
-          <p>Receiver: {order.Receiver}</p>
-          <p>Product: {order.Product}</p>
-          <p>Address: {order.Address}</p>
-          <p>Area: {order.Area}</p>
-          <p>Phone: {order.phone}</p>
-          <p>Status: {order.Status}</p>
-          <p>Delivery Man Email: {order.Delivary_man.email}</p>
+  <h2 className="text-xl font-semibold text-primary text-center">Order List</h2>
+  <h1 className="text-red-500">{errorMessage}</h1>
+  {orders.length === 0 ? (
+    <p>You have no orders.</p>
+  ) : (
+    orders.map(order => (
+      <div key={order.id} className="order-card bg-white p-4 rounded-lg shadow-md mt-4">
+        <h3 className="text-lg font-semibold">Order ID: {order.id}</h3>
+        <p>Seller: {order.Seller}</p>
+        <p>Receiver: {order.Receiver}</p>
+        <p>Product: {order.Product}</p>
+        <p>Address: {order.Address}</p>
+        <p>Area: {order.Area}</p>
+        <p>Phone: {order.phone}</p>
+        <p>Status: {order.Status}</p>
+        <p>Delivery Man Email: {order.Delivary_man.email}</p>
 
-          {/* Buttons for updating order status */}
-          <button onClick={() => handleStatusUpdate(order.id, 'completed')}>
-            Mark Completed
-          </button>
-          <button onClick={() => handleStatusUpdate(order.id, 'rejected')}>
-            Mark Rejected
-          </button>
-        </div>
-      ))
-    )}
-  </div>
+        {/* Buttons for updating order status */}
+        <button
+          onClick={() => handleStatusUpdate(order.id, 'completed')}
+          className="mt-2 px-4 py-2 bg-green-500 text-white rounded focus:outline-none hover:bg-green-600"
+        >
+          Mark Completed
+        </button>
+        <button
+          onClick={() => handleStatusUpdate(order.id, 'rejected')}
+          className="ml-2 px-4 py-2 bg-red-500 text-white rounded focus:outline-none hover:bg-red-600"
+        >
+          Mark Rejected
+        </button>
+      </div>
+    ))
+  )}
+</div>
+
 </Layout>
 
   );

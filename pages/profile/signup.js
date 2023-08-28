@@ -66,7 +66,8 @@ async function Registration() {
   formData.append('gender', gender);
   formData.append('password', password);
   formData.append('DPhoto', document.querySelector('#fileInput').files[0]);
-
+  for (const entry of formData.entries()) {
+    console.log(entry);}
   
     // Make a POST request to the backend API
     const response = await axios.post(`${process.env.NEXT_PUBLIC_DELIVERY}signup`, formData ,{
@@ -81,7 +82,7 @@ async function Registration() {
   //  else if(response.statusText==="Not Found")
   //     {console.log("res unsuccessful!");
   //       setErrorMessage("Registration faild!");} 
-  window.location.href = '/'
+  window.location.href = '/';
       
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -96,95 +97,136 @@ async function Registration() {
 };
 
   return (
-    <div>
-      <h2>Delivery Man Registration</h2>
-      {errorMessage && <p>{errorMessage}</p>}
-      <form onSubmit={handleRegistration}>
-        <div>
-          <label>Name:</label>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-96 bg-white shadow p-6 rounded grid grid-cols-2 gap-4">
+        <div className="col-span-2">
+          <h2 className="text-2xl font-semibold mb-4 " >Delivery Man Registration</h2>
+          {errorMessage && (
+            <div className="alert alert-error flex items-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="ml-2">{errorMessage}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="col-span-1">
+          <label className="block font-medium">Name:</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Phone Number:</label>
+
+          <label className="block font-medium">Phone Number:</label>
           <input
             type="text"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
-        </div>
-        <div>
-          <label>Charge per Unit:</label>
+
+          <label className="block font-medium">Charge per Unit:</label>
           <input
             type="text"
             value={tk}
             onChange={(e) => setChargePerUnit(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
-        </div>
-        <div>
-          <label>Vehicle:</label>
-          <select value={vehicle} onChange={(e) => setVehicle(e.target.value)}>
+
+          <label className="block font-medium">Vehicle:</label>
+          <select
+            value={vehicle}
+            onChange={(e) => setVehicle(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
+          >
             <option value="">Select Vehicle</option>
             <option value="bike">Bike</option>
             <option value="cycle">Cycle</option>
             <option value="truck">Truck</option>
           </select>
-        </div>
-        <div>
-          <label>Address:</label>
+
+          <label className="block font-medium">Address:</label>
           <textarea
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
         </div>
-        <div>
-          <label>Gender:</label>
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+
+        <div className="col-span-1">
+          <label className="block font-medium">Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
+          />
+
+          <label className="block font-medium">Gender:</label>
+          <select
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
+          >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-        </div>
-        <div>
-          <label>Password:</label>
+
+          <label className="block font-medium">Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
+
+          <label className="block font-medium">Confirm Password:</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
-        </div>
-        <div>
-          <label>Photo:</label>
+
+          <label className="block font-medium">Photo:</label>
           <input
             type="file"
             accept="image/*"
-            id="fileInput" 
+            id="fileInput"
             onChange={(e) => setPhoto(e.target.files[0])}
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-400"
           />
+      
         </div>
-        <button type="submit">Register</button>
-        <h5>Already account?<Link href='/'>Login</Link></h5>
-      </form>
+        <div className="col-span-2">
+        <button
+            type="submit"
+            onClick={handleRegistration}
+            className="w-full p-2 bg-blue-500 text-white rounded focus:outline-none hover:bg-blue-600"
+          >
+            Register
+          </button>
+         
+          <h5 className="mt-4">
+            Already have an account? <Link href="/" className="text-blue-500">Login</Link>
+          </h5></div>
+      </div>
+      
     </div>
   );
 };

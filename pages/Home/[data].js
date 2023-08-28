@@ -25,24 +25,45 @@ const OrderDetails = () => {
   return (
     <div>
        <Layout page="Dynamic Page">
-      <h2>Order Details</h2>
-      {orderDetails ? (
-        <div>
-          <p>Order ID: {orderDetails.id}</p>
-          <p>Seller: {orderDetails.Seller}</p>
-          <p>Receiver: {orderDetails.Receiver}</p>
-          <p>Product: {orderDetails.Product}</p>
-          <p>Time: {orderDetails.Time}</p>
-          <p>Address: {orderDetails.Address}</p>
-          <p>Area: {orderDetails.Area}</p>
-          <p>Phone: {orderDetails.phone}</p>
-          <p>Status: {orderDetails.Status}</p>
-        </div>
-      ) : (
-        <p>Loading order details...
-        Data received through param: {data}</p> 
-      )}
-      </Layout>
+  <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <h2 className="text-2xl font-semibold mb-4 text-center text-primary">Order Details</h2>
+    {orderDetails ? (
+      <div className="bg-gradient-to-r from-blue-200 to-purple-200 p-6 rounded-lg shadow-md">
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Order ID:</span> {orderDetails.id}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Seller:</span> {orderDetails.Seller}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Receiver:</span> {orderDetails.Receiver}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Product:</span> {orderDetails.Product}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Time:</span> {orderDetails.Time}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Address:</span> {orderDetails.Address}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Area:</span> {orderDetails.Area}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Phone:</span> {orderDetails.phone}
+        </p>
+        <p className="mb-2">
+          <span className="font-semibold text-blue-600">Status:</span> {orderDetails.Status}
+        </p>
+      </div>
+    ) : (
+      <p className="text-gray-600">Loading order details... Data received through param: {data}</p>
+    )}
+  </div>
+</Layout>
+
+
     </div>
   );
 };

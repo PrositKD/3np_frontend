@@ -13,7 +13,10 @@ export default function Home() {
   return (
     <>
    
-  <Login></Login>
+<Login></Login> 
+  <div className="bg-blue-500">
+This is my component!
+</div>
     
    
     </>

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.custom-grid {
+    background-color:#f2f1e6;  /* Change this color as desired */
+  }
+  .custom-grid > * {
+    margin-top: 1rem; /* Adjust this margin to control the gap color */
+    background-color:#e0f7bd; /* Background color for the gap */
+  }
+  .custom-background {
+    background-color: #166461 /* Replace with your desired hex color code */
+  }
+  .background {
+    background-color: #f2f1e6 /* Replace with your desired hex color code */
+  }
