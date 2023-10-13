@@ -111,7 +111,7 @@ const Login = () => {
             placeholder="Password here" className="input input-bordered input-error w-full max-w-xs"
           />
         </div>
-        <button type="submit" className="btn btn-primary w-full">Login</button>
+        <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded focus:outline-none hover:bg-blue-600">Login</button>
         <h5 className="mt-2 text-sm">
           New User? <Link href="/profile/signup" className="text-blue-500">SignUp</Link>
         </h5>
