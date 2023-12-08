@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Layout from '../Layout/layout';
+import Layout from './Layout/layout';
 
 export default function View_Product() {
   const [products, setProducts] = useState([]);

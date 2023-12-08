@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Layout from '../Layout/layout';
+import Layout from './Layout/layout';
 import Image from 'next/image'
 
 export default function About(){

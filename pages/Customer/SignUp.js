@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import Layout from "../Layout/layout";
+import Layout from "./Layout/layout";
 import axios from 'axios';
 
 const RegistrationPage = () => {

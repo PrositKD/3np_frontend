@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../Layout/layout';
+import Layout from './Layout/layout';
 
 export default function View_Product() {
   return (

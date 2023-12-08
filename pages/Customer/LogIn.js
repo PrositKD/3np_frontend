@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Layout from "../Layout/layout";
+import Layout from "./Layout/layout";
 import axios from "axios";
-import { useAuth } from "../Uits/authContext";
+import { useAuth } from "./Uits/authContext";
 import RegistrationPage from "./SignUp";
 
 

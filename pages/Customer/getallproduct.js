@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../Uits/authContext";
+import { useAuth } from "./Uits/authContext";
 
 function SProductList() {
   const [products, setProducts] = useState([]);
